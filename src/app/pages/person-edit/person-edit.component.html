@@ -1,0 +1,29 @@
+<div class="constainer">
+  <mat-card>
+    <form [formGroup]="personForm" novalidate fxFlex autocomplete="off">
+      <mat-form-field class="standard-field" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="name" matInput placeholder="Nombre" />
+      </mat-form-field>
+
+      <mat-form-field class="standard-field" appearance="fill">
+        <mat-label>Genero</mat-label>
+        <mat-select formControlName="gender" required>
+          <mat-option *ngFor="let gen of ['m', 'f', 'otro']" [value]="gen">
+            {{ gen }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <button
+        type="submit"
+        [disabled]="!personForm.valid"
+        (click)="onSave()"
+        mat-flat-button
+        color="primary"
+      >
+        Aceptar
+      </button>
+      <a mat-flat-button color="warn" [routerLink]="['/']">Cancelar</a>
+    </form>
+  </mat-card>
+</div>
