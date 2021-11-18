@@ -8,20 +8,22 @@ import { PersonService } from 'src/app/services/person.service';
   styleUrls: ['./grafo.component.scss']
 })
 export class GrafoComponent implements OnInit {
-  
+
   constructor(private person: PersonService) { }
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
-    title: {text:'Generos'},
-    series: this.person.grupos.map(data => {
-      return {
-        name: data.gender,
-        data: [data.counter],
-        type: 'pie'
-      }
-    })
+    title: { text: 'Generos' },
+    series: [{
+      name: 'generos',
+      data: this.person.grupos.map(data => {
+        return data.counter
+      }),
+      type: 'pie'
+    }
+    ]
   };
   ngOnInit(): void {
+    console.log(this.person.grupos)
     //this.list();
   }
   /* list() {
@@ -46,7 +48,7 @@ export class GrafoComponent implements OnInit {
     });
   }
    */
-  
-  
+
+
 
 }

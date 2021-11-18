@@ -8,6 +8,7 @@ import { DialogOverviewExampleDialog, PersonComponent } from './pages/person/per
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonEditComponent } from './pages/person-edit/person-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCommonModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
@@ -17,8 +18,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout'
 import { GrafoComponent } from './pages/grafo/grafo.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+
 
 @NgModule({
   declarations: [
@@ -34,8 +37,10 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
+    MatCommonModule,
+    LayoutModule,
     MatDialogModule,
     MatTableModule,
     MatCardModule,

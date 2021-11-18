@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { PersonService } from 'src/app/services/person.service';
 
 @Component({
@@ -16,9 +17,20 @@ export class PersonEditComponent implements OnInit {
       { value: '', disabled: false },
       [Validators.required, Validators.pattern('^[0-9]*\.?[0-9]*$')])
   });
-  constructor(private personService: PersonService) { }
+  constructor(private personService: PersonService, private activate: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activate.params.subscribe(data => {
+      if (data.id) {
+        this.getPerson(data.id);
+      }
+    })
+  }
+  getPerson(id: any) {
+    this.personService.personGet(id).subscribe(data => {
+      this.personForm.controls.gender.setValue(data[0].gender);
+      this.personForm.controls.name.setValue(data[0].name);
+    });
   }
   onSave() {
     const person = {

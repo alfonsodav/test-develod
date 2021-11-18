@@ -54,10 +54,10 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       
     </table> 
-    <div><a mat-fab [routerLink]="['detail']" class="fab-bottom-right" color="primary">
+    <div><a mat-flat-button [routerLink]="['detail']" class="fab-bottom-right" color="primary">
       Agregar persona<mat-icon>add</mat-icon>
     </a></div>
-    <div><a mat-fab [routerLink]="['grafo']" class="fab-bottom-right" color="primary">
+    <div><a mat-flat-button [routerLink]="['grafo']" class="fab-bottom-right" color="primary">
       Ver Grafica
     </a></div>
   </mat-card>
