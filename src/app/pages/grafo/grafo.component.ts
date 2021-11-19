@@ -8,47 +8,28 @@ import { PersonService } from 'src/app/services/person.service';
   styleUrls: ['./grafo.component.scss']
 })
 export class GrafoComponent implements OnInit {
-
+  
   constructor(private person: PersonService) { }
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
     title: { text: 'Generos' },
-    series: [{
-      name: 'generos',
-      data: this.person.grupos.map(data => {
-        return data.counter
-      }),
-      type: 'pie'
-    }
-    ]
+    series: [/* {
+      name: 'f',
+      data: [1,3],
+      type: 'line'
+    },
+    {
+      name: 'm',
+      data: [4,5],
+      type: 'line'
+    } */]
   };
   ngOnInit(): void {
-    console.log(this.person.grupos)
-    //this.list();
-  }
-  /* list() {
-    this.person.personList().subscribe(data => {
-      console.log(data);
-      this.data = data;
-      this.grupos = this.data.reduce((acc=[], value) => {
-        acc.forEach(per => per.gender === value.gender ? per.counter.push(1) : acc.push({gender: value.gender, counter: [1]})); 
-        console.log(acc);
-        return acc;
-      },[{gender: '', counter: [0]}])
-    });
-    this.Highcharts.setOptions({
-      title: {text:'Generos'},
-      series: this.grupos.map(data => {
-        return {
-          name: data.gender,
-          data: [data.counter],
-          type: 'pie'
-        }
-      })
-    });
-  }
-   */
-
-
+    this.chartOptions.series?.push({
+      name: 'Personas de cada genero',
+      data: this.person.grupos,
+      type: 'pie'
+    })
+  };
 
 }

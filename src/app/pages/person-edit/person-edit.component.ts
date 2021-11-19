@@ -15,13 +15,15 @@ export class PersonEditComponent implements OnInit {
       [Validators.required]),
     gender: new FormControl(
       { value: '', disabled: false },
-      [Validators.required, Validators.pattern('^[0-9]*\.?[0-9]*$')])
+      [Validators.required])
   });
+  edit = '';
   constructor(private personService: PersonService, private activate: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activate.params.subscribe(data => {
       if (data.id) {
+        this.edit = data.id;
         this.getPerson(data.id);
       }
     })
@@ -37,13 +39,23 @@ export class PersonEditComponent implements OnInit {
       gender: this.personForm.controls.gender.value,
       name: this.personForm.controls.name.value
     }
-    this.personService.personCreate(person).subscribe(data => {
-      alert('Creado correctamente');
-      console.log(data);
-    }, error => {
-      alert('ocurrio un error');
-      console.log(error);
-    })
+    if (this.edit) {
+      this.personService.personEdit(this.edit, person).subscribe(data => {
+        alert('actualizado correctamente');
+        console.log(data);
+      }, error => {
+        alert('ocurrio un error');
+        console.log(error);
+      })
+    } else {
+      this.personService.personCreate(person).subscribe(data => {
+        alert('Creado correctamente');
+        console.log(data);
+      }, error => {
+        alert('ocurrio un error');
+        console.log(error);
+      })
+    }
   }
 
 }
